@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "id": "3d58789d",
+      "title": "My First Post"
+    },
+    {
+      "id": "2124e868",
+      "title": "My Second Post"
+    },
+    {
+      "id": "951ec4c8",
+      "title": "My Third Post"
+    }
+  ]
+}
