@@ -4,7 +4,7 @@
   "description": "Microservice for handling comments",
   "main": "index.js",
   "scripts": {
-    "json:server": "json-server --watch db.json --port 3001",
+    "json:server": "json-server --watch db.json --port 5001",
     "server": "nodemon index.js",
     "dev": "concurrently \"npm run json:server\" \"npm run server\""
   },

@@ -7,7 +7,7 @@ const app = express();
 // json parser
 app.use(express.json({ extended: false }));
 
-const url = "http://localhost:3000";
+const url = "http://localhost:5000";
 
 app.get("/posts", async (req, res) => {
   try {

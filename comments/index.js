@@ -7,7 +7,7 @@ const app = express();
 // json parser
 app.use(express.json({ extended: false }));
 
-const url = "http://localhost:3001";
+const url = "http://localhost:5001";
 
 app.get("/posts/:id/comments", async (req, res) => {
   try {
