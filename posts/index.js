@@ -1,11 +1,13 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require('cors');
 const { randomBytes } = require("crypto");
 
 const app = express();
 
 // json parser
 app.use(express.json({ extended: false }));
+app.use(cors());
 
 const url = "http://localhost:5000";
 
