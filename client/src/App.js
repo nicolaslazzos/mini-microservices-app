@@ -1,5 +1,6 @@
 import { Grommet, Box } from "grommet";
 import PostCreate from "./PostCreate";
+import PostList from "./PostList";
 import AppBar from "./AppBar";
 import Container from "./Container";
 
@@ -20,6 +21,7 @@ function App() {
         <AppBar title="Mini Microservices App" />
         <Container>
           <PostCreate />
+          <PostList />
         </Container>
       </Box>
     </Grommet>
