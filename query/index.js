@@ -15,7 +15,7 @@ app.get("/posts", async (req, res) => {
     const result = await axios.get(`${url}/posts`);
     res.send(result.data);
   } catch (e) {
-    console.log("[GET /posts]", e);
+    console.log("[GET /posts]", e.message);
     res.status(500).send("Internal server error");
   }
 });
@@ -25,14 +25,21 @@ app.post("/events", async (req, res) => {
     const { type, data } = req.body;
 
     if (type === "PostCreated") {
-      const { id, title } = data;
-
-      await axios.post(`${url}/posts`, { id, title, comments: [] });
+      await axios.post(`${url}/posts`, { ...data, comments: [] });
     } else if (type === "CommentCreated") {
-      const { id, content, postId } = data;
+      const { postId } = data;
 
       const post = await axios.get(`${url}/posts/${postId}`);
-      const comments = [...post.data.comments, { id, content, postId }];
+      const comments = [...post.data.comments, { ...data }];
+
+      await axios.patch(`${url}/posts/${postId}`, { comments });
+    } else if (type === "CommentUpdated") {
+      const { id, postId } = data;
+
+      const post = await axios.get(`${url}/posts/${postId}`);
+      const comments = post.data.comments.map((comment) =>
+        comment.id === id ? { ...comment, ...data } : comment
+      );
 
       await axios.patch(`${url}/posts/${postId}`, { comments });
     }
@@ -41,7 +48,7 @@ app.post("/events", async (req, res) => {
 
     res.send({ status: "Ok" });
   } catch (e) {
-    console.log("[POST /events]", e);
+    console.log("[POST /events]", e.message);
     res.status(500).send("Internal server error");
   }
 });

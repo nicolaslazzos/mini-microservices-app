@@ -12,7 +12,7 @@ const PostCreate = () => {
 
       setFormData({ ...initialState });
     } catch (e) {
-      console.log("[PostCreate - onSubmit]", e);
+      console.log("[PostCreate - onSubmit]", e.message);
     }
   };
 

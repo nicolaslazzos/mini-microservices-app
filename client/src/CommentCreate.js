@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Form, FormField, TextInput, Box, Button, Heading } from "grommet";
+import { Form, FormField, TextInput, Box, Button } from "grommet";
 
 const CommentCreate = ({ postId }) => {
   const initialState = { content: "" };
@@ -12,7 +12,7 @@ const CommentCreate = ({ postId }) => {
 
       setFormData({ ...initialState });
     } catch (e) {
-      console.log("[CommentCreate - onSubmit]", e);
+      console.log("[CommentCreate - onSubmit]", e.message);
     }
   };
 

@@ -3,12 +3,12 @@ const cors = require("cors");
 const axios = require("axios");
 
 const app = express();
-app.use(cors());
 
 // json parser
 app.use(express.json({ extended: false }));
+app.use(cors());
 
-const ports = [4000, 4001, 4002];
+const ports = [4000, 4001, 4002, 4003];
 
 app.post("/events", async (req, res) => {
   try {

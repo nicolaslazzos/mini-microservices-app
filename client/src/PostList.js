@@ -16,7 +16,7 @@ const PostList = () => {
       const res = await axios.get("http://localhost:4002/posts");
       setPosts(res.data);
     } catch (e) {
-      console.log("[PostList - getPosts]", e);
+      console.log("[PostList - getPosts]", e.message);
     }
   };
 

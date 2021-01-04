@@ -17,7 +17,7 @@ app.get("/posts/:id/comments", async (req, res) => {
     const result = await axios.get(`${url}/comments?postId=${postId}`);
     res.send(result.data);
   } catch (e) {
-    console.log("[GET /posts/:id/comments]", e);
+    console.log("[GET /posts/:id/comments]", e.message);
     res.status(500).send("Internal server error");
   }
 });
@@ -27,7 +27,12 @@ app.post("/posts/:id/comments", async (req, res) => {
     const id = randomBytes(4).toString("hex");
     const { content } = req.body;
     const postId = req.params.id;
-    const result = await axios.post(`${url}/comments`, { id, content, postId });
+    const result = await axios.post(`${url}/comments`, {
+      id,
+      content,
+      status: "pending",
+      postId,
+    });
 
     // sending event to the bus
     await axios.post("http://localhost:4005/events", {
@@ -42,9 +47,28 @@ app.post("/posts/:id/comments", async (req, res) => {
   }
 });
 
-app.post("/events", (req, res) => {
-  console.log("EVENT", req.body.type);
-  res.send({ status: "Ok" });
+app.post("/events", async (req, res) => {
+  try {
+    const { type, data } = req.body;
+
+    if (type === "CommentModerated") {
+      const { id, status } = data;
+
+      const comment = await axios.patch(`${url}/comments/${id}`, { status });
+
+      await axios.post("http://localhost:4005/events", {
+        type: "CommentUpdated",
+        data: { ...comment.data },
+      });
+    }
+
+    console.log("EVENT", req.body.type);
+
+    res.send({ status: "Ok" });
+  } catch (e) {
+    console.log("[POST /events]", e.message);
+    res.status(500).send("Internal server error");
+  }
 });
 
 const PORT = process.env.PORT || 4001;

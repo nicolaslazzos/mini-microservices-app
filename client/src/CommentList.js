@@ -7,7 +7,17 @@ const CommentList = ({ comments }) => {
       primaryKey="content"
       border={false}
       margin={{ top: "none", bottom: "medium" }}
-      data={comments}
+      data={comments.map((comment) => {
+        const { status } = comment;
+
+        if (status === "pending") {
+          return { ...comment, content: "Awating for comment moderation..." };
+        } else if (status === "rejected") {
+          return { ...comment, content: "This comment was rejected..." };
+        } else if (status === "approved") {
+          return comment;
+        }
+      })}
     />
   );
 };
