@@ -1,24 +1,8 @@
 {
   "posts": [
     {
-      "id": "3d58789d",
-      "title": "My First Post"
-    },
-    {
-      "id": "2124e868",
-      "title": "My Second Post"
-    },
-    {
-      "id": "951ec4c8",
-      "title": "My Third Post"
-    },
-    {
-      "id": "c9a0f477",
-      "title": "A test post from the client"
-    },
-    {
-      "id": "27a3a6a5",
-      "title": "This is a new test post"
+      "id": "963046ff",
+      "title": "A new test post"
     }
   ]
 }

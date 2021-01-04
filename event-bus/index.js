@@ -1,7 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 const axios = require("axios");
 
 const app = express();
+app.use(cors());
 
 // json parser
 app.use(express.json({ extended: false }));
@@ -18,6 +20,8 @@ app.post("/events", async (req, res) => {
     );
 
     await axios.all(requests);
+
+    console.log("EVENT", req.body.type);
 
     res.send({ status: "Ok" });
   } catch (e) {

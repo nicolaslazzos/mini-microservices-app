@@ -1,24 +1,14 @@
 {
   "comments": [
     {
-      "id": "9cdfc09c",
-      "content": "My First Comment",
-      "postId": "3d58789d"
+      "id": "641d2932",
+      "content": "A new test comment",
+      "postId": "963046ff"
     },
     {
-      "id": "adef48f5",
-      "content": "My Second Comment",
-      "postId": "3d58789d"
-    },
-    {
-      "id": "3479c869",
-      "content": "a comment",
-      "postId": "2124e868"
-    },
-    {
-      "id": "6cd56fad",
-      "content": "making a test comment for my third post",
-      "postId": "951ec4c8"
+      "id": "040b375f",
+      "content": "Another test comment",
+      "postId": "963046ff"
     }
   ]
 }

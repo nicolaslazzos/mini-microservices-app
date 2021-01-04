@@ -13,7 +13,7 @@ const PostList = () => {
 
   const getPosts = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/posts");
+      const res = await axios.get("http://localhost:4002/posts");
       setPosts(res.data);
     } catch (e) {
       console.log("[PostList - getPosts]", e);
@@ -23,7 +23,7 @@ const PostList = () => {
   return (
     <>
       <Heading margin={{ bottom: "medium" }}>Posts</Heading>
-      {posts.map(({ title, id }) => {
+      {posts.map(({ title, id, comments }) => {
         return (
           <Card key={id} background="light-1" margin={{ bottom: "small" }}>
             <CardHeader pad="medium">
@@ -39,7 +39,7 @@ const PostList = () => {
                 bottom: "medium",
               }}
             >
-              <CommentList postId={id} />
+              <CommentList comments={comments} />
               <CommentCreate postId={id} />
             </CardBody>
           </Card>

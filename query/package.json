@@ -1,10 +1,10 @@
 {
-  "name": "comments",
+  "name": "query",
   "version": "1.0.0",
-  "description": "Microservice for handling comments",
+  "description": "Microservice for handling post with comments queries",
   "main": "index.js",
   "scripts": {
-    "json:server": "json-server --watch db.json --port 5001",
+    "json:server": "json-server --watch db.json --port 5002",
     "server": "nodemon index.js --ignore db.json",
     "dev": "concurrently \"npm run json:server\" \"npm run server\""
   },

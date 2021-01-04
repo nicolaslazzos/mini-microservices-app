@@ -1,6 +1,6 @@
 const express = require("express");
 const axios = require("axios");
-const cors = require('cors');
+const cors = require("cors");
 const { randomBytes } = require("crypto");
 
 const app = express();
@@ -28,11 +28,23 @@ app.post("/posts/:id/comments", async (req, res) => {
     const { content } = req.body;
     const postId = req.params.id;
     const result = await axios.post(`${url}/comments`, { id, content, postId });
+
+    // sending event to the bus
+    await axios.post("http://localhost:4005/events", {
+      type: "CommentCreated",
+      data: result.data,
+    });
+
     res.status(201).send(result.data);
   } catch (e) {
     console.log("[POST /posts/:id/comments]", e.message);
     res.status(500).send("Internal server error");
   }
+});
+
+app.post("/events", (req, res) => {
+  console.log("EVENT", req.body.type);
+  res.send({ status: "Ok" });
 });
 
 const PORT = process.env.PORT || 4001;

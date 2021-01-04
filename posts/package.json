@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "json:server": "json-server --watch db.json --port 5000",
-    "server": "nodemon index.js",
+    "server": "nodemon index.js --ignore db.json",
     "dev": "concurrently \"npm run json:server\" \"npm run server\""
   },
   "author": "Nicolas Lazzos",

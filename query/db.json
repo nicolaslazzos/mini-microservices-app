@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": "963046ff",
+      "title": "A new test post",
+      "comments": [
+        {
+          "id": "641d2932",
+          "content": "A new test comment",
+          "postId": "963046ff"
+        },
+        {
+          "id": "040b375f",
+          "content": "Another test comment",
+          "postId": "963046ff"
+        }
+      ]
+    }
+  ]
+}
