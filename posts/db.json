@@ -1,8 +1,16 @@
 {
   "posts": [
     {
-      "id": "8b422a1c",
-      "title": "A new test post"
+      "id": "63e28fe3",
+      "title": "a new post"
+    },
+    {
+      "id": "d4f98664",
+      "title": "another post"
+    },
+    {
+      "id": "90c0e3a9",
+      "title": "a post with the query service down"
     }
   ]
 }

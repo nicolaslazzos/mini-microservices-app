@@ -1,34 +1,28 @@
 {
   "comments": [
     {
-      "id": "d69e04c5",
-      "content": "This post is great",
+      "id": "fd098b79",
+      "content": "a new comment",
       "status": "approved",
-      "postId": "8b422a1c"
+      "postId": "63e28fe3"
     },
     {
-      "id": "d8ecd0ad",
-      "content": "This post is shit",
-      "status": "rejected",
-      "postId": "8b422a1c"
-    },
-    {
-      "id": "e3846d96",
-      "content": "Fuck this post",
-      "status": "rejected",
-      "postId": "8b422a1c"
-    },
-    {
-      "id": "701bea9c",
-      "content": "I loved this post",
+      "id": "964a0122",
+      "content": "another comment",
       "status": "approved",
-      "postId": "8b422a1c"
+      "postId": "63e28fe3"
     },
     {
-      "id": "305e993b",
-      "content": "A test comment",
-      "status": "pending",
-      "postId": "8b422a1c"
+      "id": "488dc444",
+      "content": "a new comment but in this post",
+      "status": "approved",
+      "postId": "d4f98664"
+    },
+    {
+      "id": "7197f78b",
+      "content": "a comment with the query service down",
+      "status": "approved",
+      "postId": "63e28fe3"
     }
   ]
 }

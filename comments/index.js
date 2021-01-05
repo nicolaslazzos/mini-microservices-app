@@ -54,11 +54,12 @@ app.post("/events", async (req, res) => {
     if (type === "CommentModerated") {
       const { id, status } = data;
 
-      const comment = await axios.patch(`${url}/comments/${id}`, { status });
+      const result = await axios.patch(`${url}/comments/${id}`, { status });
 
+      // sending event to the bus
       await axios.post("http://localhost:4005/events", {
         type: "CommentUpdated",
-        data: { ...comment.data },
+        data: result.data,
       });
     }
 
