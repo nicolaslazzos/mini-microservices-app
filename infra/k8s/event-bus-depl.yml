@@ -1,0 +1,40 @@
+# Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus-depl
+spec:
+  replicas: 1
+  selector:
+    # find all the pods with the label "event-bus"
+    matchLabels:
+      app: event-bus
+  template:
+    # configuration for every single pod
+    metadata:
+      labels:
+        app: event-bus
+    spec:
+      containers:
+        - name: event-bus
+          image: nicolaslazzos/event-bus
+          imagePullPolicy: Never
+---
+
+# Cluster IP service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus-cluster-serv
+spec:
+  # if we dont specify the type, it will create by default a Cluster IP service
+  selector:
+    # what pods should the service expose
+    app: event-bus
+  ports:
+    - name: event-bus
+      protocol: TCP
+      port: 4005
+      targetPort: 4005

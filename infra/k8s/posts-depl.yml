@@ -1,3 +1,5 @@
+# Deployment
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,3 +20,39 @@ spec:
         - name: posts
           image: nicolaslazzos/posts
           imagePullPolicy: Never
+---
+
+# NodePort service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-serv
+spec:
+  type: NodePort
+  selector:
+    # what pods should the service expose
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
+---
+
+# Cluster IP service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-cluster-serv
+spec:
+  # if we dont specify the type, it will create by default a Cluster IP service
+  selector:
+    # what pods should the service expose
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 4000
+      targetPort: 4000

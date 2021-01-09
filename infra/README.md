@@ -1,47 +1,83 @@
 # Useful Kubernetes Commands
 
 Show all the running pods
-`kubectl get pods`
+
+```
+kubectl get pods
+```
 
 Execute the `[command]` in a running pod
-`kubectl exec -it [pod name] [command]`
+
+```
+kubectl exec -it [pod name] [command]
+```
 
 Prints logs from the given pod
-`kubectl logs [pod name]`
+
+```
+kubectl logs [pod name]
+```
 
 Deletes the given pod
-`kubectl delete pod [pod name]`
+
+```
+kubectl delete pod [pod name]
+```
 
 Tell kubernetes to process the config
-`kubectl apply -f [config file name]`
+
+```
+kubectl apply -f [config file name]
+```
 
 Prints some information about the given pod
-`kubectl describe pod [pod name]`
+
+```
+kubectl describe pod [pod name]
+```
 
 # For Deployments
 
 Show all the running deployments
-`kubectl get deployments`
+
+```
+kubectl get deployments
+```
 
 Prints some information about the given deployment
-`kubectl describe deployment [deployment name]`
+
+```
+kubectl describe deployment [deployment name]
+```
 
 Tell kubernetes to process the config
-`kubectl apply -f [deployment config file name]`
+
+```
+kubectl apply -f [deployment config file name]
+```
 
 Deletes the given deployment
-`kubectl delete deployment [deployment name]`
+
+```
+kubectl delete deployment [deployment name]
+```
 
 Tells the deployment to use the latest version
-`kubectl rollout restart deployment [deployment name]`
+
+```
+kubectl rollout restart deployment [deployment name]
+```
 
 # Types of Services
 
 ## Cluster IP
+
 For communications between pods in a cluster
 
 ## Node Port
+
 Makes a pod accessible from outside a cluster, usually for dev purpouses.
 
 ## Load Balancer
+
 Similar to Node Port but for production.
