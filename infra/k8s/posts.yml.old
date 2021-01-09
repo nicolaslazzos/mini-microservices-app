@@ -1,0 +1,18 @@
+# with kubernetes, we can create a lot of differents objects, and with the version we are specifying which pool of objects use
+apiVersion: v1
+# we specify what object we want to create (a pod wrappes one or more container)
+kind: Pod
+metadata:
+  # the name of the pod (the one we see if we execute kubectl get pods)
+  name: posts
+spec:
+  # we specify what the object is going to have
+  containers:
+    # an array of containers (-)
+    - name: posts
+      image: nicolaslazzos/posts
+      # we tell kubernetes to pull de image from the local cache
+      imagePullPolicy: Never
+
+
+# config file for creating a single pod

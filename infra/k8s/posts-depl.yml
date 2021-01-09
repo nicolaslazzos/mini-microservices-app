@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-depl
+spec:
+  replicas: 1
+  selector:
+    # find all the pods with the label "posts"
+    matchLabels:
+      app: posts
+  template:
+    # configuration for every single pod
+    metadata:
+      labels:
+        app: posts
+    spec:
+      containers:
+        - name: posts
+          image: nicolaslazzos/posts
+          imagePullPolicy: Never
