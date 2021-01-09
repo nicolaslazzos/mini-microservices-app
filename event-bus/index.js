@@ -35,7 +35,7 @@ app.post("/events", async (req, res) => {
       try {
         await axios.post(`http://localhost:${port}/events`, event);
       } catch (e) {
-        console.log("[POST /events]", e.message);
+        console.log(`[POST ${port}/events]`, e.message);
       }
     });
 
