@@ -17,6 +17,8 @@ const CommentList = ({ comments }) => {
         } else if (status === "approved") {
           return comment;
         }
+
+        return null;
       })}
     />
   );

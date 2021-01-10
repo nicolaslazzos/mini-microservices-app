@@ -89,3 +89,15 @@ Has a set of routing rules to distribute traffic to our services so the client.
 # Implementation
 
 We will set up a Load Balancer to get the traffic from the client and then, it will pass the request to the Ingress Controller, who has the routing rules to reach out every service or pod into the cluster.
+
+# Skaffold
+
+A tool to automate the kubernetes deployment process when in a development environment.
+
+To run the project, one configured the `skaffold.yml` file, run:
+
+```
+skaffold dev
+```
+
+To stop skaffold, just press `Ctrl + C` and all the deployments asociated with the current project will be deleted.

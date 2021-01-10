@@ -23,7 +23,7 @@ In this case, a single microservice contains all the routing, middleware, busine
     - The entire request is only as fast as the slowest request.
     - Can easily introduces webs of requests or dependencies.
 
-- Async, sercvices communicate with each other using events. Two ways of implementing that:
+- Async, services communicate with each other using events. Two ways of implementing that:
   - With an event bus, where services can emit and receive events. Not so great, similar to the sync approach but with more cons.
   - With the database-per-service approach. Storing the necessary data for the feature. When a change is made in any other service, that service will emit an event (if any relevant change was made) with the new data, and the dependent service will receive the event and store the data.
     - Pros:
