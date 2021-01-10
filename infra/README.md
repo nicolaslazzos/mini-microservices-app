@@ -80,4 +80,12 @@ Makes a pod accessible from outside a cluster, usually for dev purpouses.
 
 ## Load Balancer
 
-Similar to Node Port but for production.
+Similar to Node Port but for production. This service will enable a load balancer in the cloud provider to get some traffic into a specific pod in the cluster.
+
+## Ingress Controller
+
+Has a set of routing rules to distribute traffic to our services so the client.
+
+# Implementation
+
+We will set up a Load Balancer to get the traffic from the client and then, it will pass the request to the Ingress Controller, who has the routing rules to reach out every service or pod into the cluster.

@@ -9,6 +9,7 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 const url = "http://localhost:5002";
+const eventsUrl = 'http://event-bus-cluster-serv:4005'
 
 const handleEvent = async (event) => {
   const { type, data } = event;
@@ -71,7 +72,7 @@ app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
 
   try {
-    const res = await axios.get("http://localhost:5005/events");
+    const res = await axios.get(`${eventsUrl}/events`);
 
     for (const event of res.data) {
       await handleEvent(event);

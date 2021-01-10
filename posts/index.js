@@ -10,6 +10,7 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 const url = "http://localhost:5000";
+const eventsUrl = 'http://event-bus-cluster-serv:4005'
 
 app.get("/posts", async (req, res) => {
   try {
@@ -28,7 +29,7 @@ app.post("/posts", async (req, res) => {
     const result = await axios.post(`${url}/posts`, { id, title });
 
     // sending event to the bus
-    await axios.post("http://localhost:4005/events", {
+    await axios.post(`${eventsUrl}/events`, {
       type: "PostCreated",
       data: result.data,
     });

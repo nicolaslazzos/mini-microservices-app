@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json({ extended: false }));
 app.use(cors());
 
+const eventsUrl = 'http://event-bus-cluster-serv:4005'
 const bad = ["idiot", "fuck", "shit"];
 
 app.post("/events", async (req, res) => {
@@ -21,7 +22,7 @@ app.post("/events", async (req, res) => {
         ? "rejected"
         : "approved";
 
-      await axios.post("http://localhost:4005/events", {
+      await axios.post(`${eventsUrl}/events`, {
         type: "CommentModerated",
         data: { ...data, status },
       });

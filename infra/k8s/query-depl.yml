@@ -1,0 +1,40 @@
+# Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: query-depl
+spec:
+  replicas: 1
+  selector:
+    # find all the pods with the label "query"
+    matchLabels:
+      app: query
+  template:
+    # configuration for every single pod
+    metadata:
+      labels:
+        app: query
+    spec:
+      containers:
+        - name: query
+          image: nicolaslazzos/query
+          imagePullPolicy: Never
+---
+
+# Cluster IP service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: query-cluster-serv
+spec:
+  # if we dont specify the type, it will create by default a Cluster IP service
+  selector:
+    # what pods should the service expose
+    app: query
+  ports:
+    - name: query
+      protocol: TCP
+      port: 4002
+      targetPort: 4002

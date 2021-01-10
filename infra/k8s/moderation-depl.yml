@@ -1,0 +1,40 @@
+# Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moderation-depl
+spec:
+  replicas: 1
+  selector:
+    # find all the pods with the label "moderation"
+    matchLabels:
+      app: moderation
+  template:
+    # configuration for every single pod
+    metadata:
+      labels:
+        app: moderation
+    spec:
+      containers:
+        - name: moderation
+          image: nicolaslazzos/moderation
+          imagePullPolicy: Never
+---
+
+# Cluster IP service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: moderation-cluster-serv
+spec:
+  # if we dont specify the type, it will create by default a Cluster IP service
+  selector:
+    # what pods should the service expose
+    app: moderation
+  ports:
+    - name: moderation
+      protocol: TCP
+      port: 4003
+      targetPort: 4003

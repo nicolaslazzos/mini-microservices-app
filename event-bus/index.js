@@ -9,8 +9,13 @@ const app = express();
 app.use(express.json({ extended: false }));
 app.use(cors());
 
-const ports = [4000, 4001, 4002, 4003];
-
+const domains = [
+  "http://posts-cluster-serv:4000",
+  "http://comments-cluster-serv:4001",
+  "http://query-cluster-serv:4002",
+  "http://moderation-cluster-serv:4003",
+];
+ 
 const url = "http://localhost:5005";
 
 app.get("/events", async (req, res) => {
@@ -31,11 +36,11 @@ app.post("/events", async (req, res) => {
 
     await axios.post(`${url}/events`, event);
 
-    ports.forEach(async (port) => {
+    domains.forEach(async (url) => {
       try {
-        await axios.post(`http://localhost:${port}/events`, event);
+        await axios.post(`${url}/events`, event);
       } catch (e) {
-        console.log(`[POST ${port}/events]`, e.message);
+        console.log(`[POST ${url}/events]`, e.message);
       }
     });
 

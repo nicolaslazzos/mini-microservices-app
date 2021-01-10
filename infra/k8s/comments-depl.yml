@@ -1,0 +1,40 @@
+# Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comments-depl
+spec:
+  replicas: 1
+  selector:
+    # find all the pods with the label "comments"
+    matchLabels:
+      app: comments
+  template:
+    # configuration for every single pod
+    metadata:
+      labels:
+        app: comments
+    spec:
+      containers:
+        - name: comments
+          image: nicolaslazzos/comments
+          imagePullPolicy: Never
+---
+
+# Cluster IP service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: comments-cluster-serv
+spec:
+  # if we dont specify the type, it will create by default a Cluster IP service
+  selector:
+    # what pods should the service expose
+    app: comments
+  ports:
+    - name: comments
+      protocol: TCP
+      port: 4001
+      targetPort: 4001

@@ -10,6 +10,7 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 const url = "http://localhost:5001";
+const eventsUrl = 'http://event-bus-cluster-serv:4005'
 
 app.get("/posts/:id/comments", async (req, res) => {
   try {
@@ -35,7 +36,7 @@ app.post("/posts/:id/comments", async (req, res) => {
     });
 
     // sending event to the bus
-    await axios.post("http://localhost:4005/events", {
+    await axios.post(`${eventsUrl}/events`, {
       type: "CommentCreated",
       data: result.data,
     });
@@ -57,7 +58,7 @@ app.post("/events", async (req, res) => {
       const result = await axios.patch(`${url}/comments/${id}`, { status });
 
       // sending event to the bus
-      await axios.post("http://localhost:4005/events", {
+      await axios.post(`${eventsUrl}/events`, {
         type: "CommentUpdated",
         data: result.data,
       });
