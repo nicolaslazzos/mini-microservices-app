@@ -1,0 +1,40 @@
+# Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-depl
+spec:
+  replicas: 1
+  selector:
+    # find all the pods with the label "client"
+    matchLabels:
+      app: client
+  template:
+    # configuration for every single pod
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: nicolaslazzos/client
+          imagePullPolicy: Never
+---
+
+# Cluster IP service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-cluster-serv
+spec:
+  # if we dont specify the type, it will create by default a Cluster IP service
+  selector:
+    # what pods should the service expose
+    app: client
+  ports:
+    - name: client
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

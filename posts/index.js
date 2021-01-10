@@ -12,6 +12,7 @@ app.use(cors());
 const url = "http://localhost:5000";
 const eventsUrl = 'http://event-bus-cluster-serv:4005'
 
+// unused
 app.get("/posts", async (req, res) => {
   try {
     const result = await axios.get(`${url}/posts`);
@@ -22,7 +23,7 @@ app.get("/posts", async (req, res) => {
   }
 });
 
-app.post("/posts", async (req, res) => {
+app.post("/posts/create", async (req, res) => {
   try {
     const id = randomBytes(4).toString("hex");
     const { title } = req.body;

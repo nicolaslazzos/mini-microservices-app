@@ -8,7 +8,7 @@ const CommentCreate = ({ postId }) => {
 
   const onSubmit = async ({ value }) => {
     try {
-      await axios.post(`http://localhost:4001/posts/${postId}/comments`, value);
+      await axios.post(`http://localhost/posts/${postId}/comments`, value);
 
       setFormData({ ...initialState });
     } catch (e) {

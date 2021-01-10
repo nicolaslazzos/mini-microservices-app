@@ -8,7 +8,7 @@ const PostCreate = () => {
 
   const onSubmit = async ({ value }) => {
     try {
-      await axios.post("http://localhost:4000/posts", value);
+      await axios.post("http://localhost/posts/create", value);
 
       setFormData({ ...initialState });
     } catch (e) {
