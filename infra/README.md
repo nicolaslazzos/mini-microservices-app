@@ -1,5 +1,13 @@
 # Useful Kubernetes Commands
 
+Delete all the unused and dangling images and containers
+
+```
+docker system prune -a -f
+```
+
+# Useful Kubernetes Commands
+
 Show all the running pods
 
 ```
